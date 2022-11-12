@@ -1,0 +1,14 @@
+A simple command line application that lets a user obtain information about packets filtered according to any of the TCP header flags through live capturing the requested flags or by parsing the pcap file containing the packets of any application layer protocol and extract the required flags from the packet. Built with Python (v3.6.9), this can be a useful tool for network traffic analysis. The package pyshark allows parsing from a capture file or a live capture.
+
+In case of using the program to live capture the packets, with the help of the flag filter that was computed based on the input flags, we only capture packets which have TCP layer and the respective input flags. 
+
+In the user input for live capturing the user can select one or multiple TCP header flags and in addition to this, the user can input the number of packets to be captured. When the user selects multiple TCP header flags it displays the packets which contain all the input flags. (this is done using the and_flag_filter function). The flags in the packet are stored in the hexadecimal format, using find_flags_in_packet function, we get all the flags that are present in the packet. 
+In the other case when we are using the program to read from an existing pcap file, the application takes a network traffic file as input, we search for packets that have a TCP layer and then we check if the input flags are present in these packets and display the corresponding packets containing the requested flags.
+
+When all the conditions are satisfied by a packet we display the following data for every packet in the traffic: 
+
+-	Source IP address : Source IP address of the  packet
+-	Destination IP address : Destination IP address of the packet
+-	Source Port : Source port of the packet
+-	Destination Port : Destination port of the packet
+-	All the flags present in the packet : A space separated list of flags present on that                   particular packet
